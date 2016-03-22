@@ -5,8 +5,8 @@
         <input class="form form--modal" placeholder="Enter scheme name" v-model="schemeName">
         <div>
             <h5 class="modal__body-header">Saved Schemes</h5>
-            <div class="save__saves">
-                <div class="save__saved" v-on:click="setSchemeName(name)" v-for="name in names">
+            <div class="modal__saves">
+                <div class="modal__saved" v-on:click="setSchemeName(name)" v-for="name in names">
                     @{{ name }}
                 </div>
             </div>
@@ -14,5 +14,6 @@
     </div>
     <div slot="footer">
         <button class="button button--dark button--modal" v-on:click="sendSave">Save</button>
+        <button class="button button--dark button--modal" v-on:click="closeModal('Save')">Cancel</button>
     </div>
 </modal>

@@ -10,7 +10,7 @@ var Modal = require('./components/Modal.vue');
 
 var Color = require('./components/Color.vue');
 
-new Vue({
+var vm = new Vue({
     el: '#app',
 
     components: { Menu, Modal, Color },
@@ -27,11 +27,16 @@ new Vue({
       },
 
     data: {
+        showNew: false,
         showSave: false,
         showLoad: false,
         schemeName: '',
         temp: [],
-        colorScheme: []
+        colorScheme: [],
+        newScheme: [{name: 'White', hex: '#ffffff'}],
+        saved: false,
+        subModule: false,
+        subModuleToggle: true
     },
 
     computed: {
@@ -77,16 +82,18 @@ new Vue({
             this.colorScheme.$remove(color);
         },
 
-        openModule: function (name) {
-            this.temp = this.colorScheme;
-
-            var prop = 'show' + name;
-
-            this[prop] = true;
+        openNewModule: function () {
+            this.showNew = true;
         },
 
-        restoreScheme: function () {
-            this.colorScheme = this.temp;
+        openSaveModule: function () {
+            this.showSave = true;
+        },
+
+        openLoadModule: function () {
+            this.temp = this.colorScheme;
+
+            this.showLoad = true;
         }
     },
 
@@ -104,12 +111,12 @@ new Vue({
 
             this.$http.post('/laravel-colors/save', {name: this.schemeName, data: JSON.stringify(this.colorScheme)}).then(function (response) {
                 this.saves = response.data;
-
-                console.log(this.saves);
             }, function (response) {
                 // error
                 console.log('crap...');
             });
+
+            this.saved = true;
 
             this.showSave = false;
         },
@@ -126,6 +133,25 @@ new Vue({
 
         setSchemeName: function (name) {
             this.schemeName = name;
+        },
+
+        createNewScheme: function () {
+            this.colorScheme = [];
+        },
+
+        closeModal: function (name) {
+            var prop = 'show' + name;
+
+            this[prop] = false;
+
+            setTimeout(function () {
+                vm.subModule = false;
+                vm.subModuleToggle = true;
+            }, 500);
+        },
+
+        restoreScheme: function () {
+            this.colorScheme = this.temp;
         }
     }
 });

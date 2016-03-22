@@ -16,7 +16,6 @@
                 <div class="modal__footer">
                     <slot name="footer">
                     </slot>
-                    <button class="button button--dark button--modal" @click="show = false, restoreScheme()">Close</button>
                 </div>
             </div>
         </div>
@@ -33,8 +32,9 @@
             }
         },
         methods: {
-            restoreScheme: function () {
-                this.$dispatch('restoreScheme');
+            closeModal: function () {
+                // this.$dispatch('closeModal', name);
+                console.log(7);
             }
         }
     };

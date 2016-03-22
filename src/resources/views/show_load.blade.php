@@ -10,5 +10,6 @@
     </div>
     <div slot="footer">
         <button class="button button--dark button--modal" v-on:click="showLoad = false">Ok</button>
+        <button class="button button--dark button--modal" v-on:click="closeModal('Load'), restoreScheme()">Cancel</button>
     </div>
 </modal>

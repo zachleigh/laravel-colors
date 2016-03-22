@@ -10,6 +10,7 @@
     </head>
     <body>
         <div id="app" :colors="{{ json_encode($colors) }}" :saves="{{ json_encode($saves)}}">
+            @include('laravel-colors::show_new')
             @include('laravel-colors::show_save')
             @include('laravel-colors::show_load')
             @include('laravel-colors::nav')
