@@ -17,10 +17,20 @@ var vm = new Vue({
 
     props: ['colors', 'saves'],
 
+    props: {
+        colors: {
+            type: Array
+        },
+        saves: {
+            type: Array
+        }
+      },
+
     data: {
         showSave: false,
         showLoad: false,
-        schemeName: ''
+        schemeName: '',
+        colorScheme: []
     },
 
     computed: {
@@ -34,9 +44,7 @@ var vm = new Vue({
     },
 
     created: function() {
-        this.colors = JSON.parse(this.colors);
-
-        this.saves = JSON.parse(this.saves);
+        this.colorScheme = this.colors.concat([]);
     },
 
     ready: function() {
@@ -59,8 +67,14 @@ var vm = new Vue({
         drake.on('drop', function(element, target, source, sibling) {
             var index = [].indexOf.call(element.parentNode.children, element);
 
-            self.colors.splice(index, 0, self.colors.splice(from, 1)[0]);
+            self.colorScheme.splice(index, 0, self.colorScheme.splice(from, 1)[0]);
         });
+    },
+
+    events: {
+        test: function (color) {
+            this.colorScheme.$remove(color);
+        }
     },
 
     methods: {
@@ -69,13 +83,13 @@ var vm = new Vue({
         },
 
         addColor: function (event) {
-            this.colors.unshift({index: 0, name: 'white', hex: '#ffffff'});
+            this.colorScheme.unshift({index: 0, name: 'white', hex: '#ffffff'});
         },
 
         sendSave: function () {
             this.$broadcast('syncColors');
 
-            this.$http.post('/laravel-colors/save', {name: this.schemeName, data: JSON.stringify(this.colors)}).then(function (response) {
+            this.$http.post('/laravel-colors/save', {name: this.schemeName, data: JSON.stringify(this.colorScheme)}).then(function (response) {
                 this.saves = response.data;
 
                 console.log(this.saves);
@@ -94,7 +108,7 @@ var vm = new Vue({
 
             this.schemeName = name;
 
-            this.colors = JSON.parse(scheme[0].colors);
+            this.colorScheme = JSON.parse(scheme[0].colors);
         }
     }
 });

@@ -9,13 +9,13 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div id="app" colors="{{ json_encode($colors) }}" saves="{{ json_encode($saves)}}">
+        <div id="app" :colors="{{ json_encode($colors) }}" :saves="{{ json_encode($saves)}}">
             @include('laravel-colors::show_save')
             @include('laravel-colors::show_load')
             @include('laravel-colors::nav')
             <menu></menu>
             <div id="draggable" class="wrapper">
-                <div class="color" v-for="color in colors">
+                <div class="color" v-for="color in colorScheme">
                     <color :color="color" :name="color.name" :hex="color.hex">
                     </color>
                 </div>

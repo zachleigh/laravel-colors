@@ -1,17 +1,15 @@
-
-
 <?php
 
 use LaravelColors\Colors;
 use Illuminate\Http\Request;
-use LaravelColors\LaravelColor;
+use LaravelColors\ColorScheme;
 
 Route::get('/laravel-colors/colors', function () {
     $colorReader = new Colors();
 
     $colors = $colorReader->readColorsFile();
 
-    $saves = LaravelColor::all()->toArray();
+    $saves = ColorScheme::all()->toArray();
 
     return view('laravel-colors::main', compact('colors', 'saves'));
 });
@@ -21,15 +19,15 @@ Route::post('laravel-colors/save', function (Request $request) {
 
     $name = $request->get('name');
 
-    if ($color = LaravelColor::where('name', $name)->first()) {
+    if ($color = ColorScheme::where('name', $name)->first()) {
         $color->colors = $scheme;
 
         $color->save();
     } else {
-        LaravelColor::create(['name' => $name, 'colors' => $scheme]);
+        ColorScheme::create(['name' => $name, 'colors' => $scheme]);
     }
 
-    $saves = LaravelColor::all()->toArray();
+    $saves = ColorScheme::all()->toArray();
 
     return $saves;
 });

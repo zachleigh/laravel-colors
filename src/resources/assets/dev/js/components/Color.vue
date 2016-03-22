@@ -92,7 +92,7 @@
 
                 this.color.hex = this.hex;
 
-                vm.colors.splice(index, 1, this.color);
+                this.$parent.colors.splice(index, 1, this.color);
 
                 return true;
             }
@@ -146,7 +146,7 @@
             },
 
             removeColor: function (color) {
-                this.$parent.colors.$remove(color);
+                this.$dispatch('test', color);
             }
         }
     };

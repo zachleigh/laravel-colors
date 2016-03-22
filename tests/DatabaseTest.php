@@ -2,8 +2,6 @@
 
 namespace LaravelColors\tests;
 
-use LaravelColors\Colors;
-
 class DatabaseTest extends TestCase
 {
     /**

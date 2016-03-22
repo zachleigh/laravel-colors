@@ -30,7 +30,7 @@ class LaravelColorsServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
-            __DIR__.'/2016_03_15_220300_create_laravel_colors_table.php' => database_path('migrations/2016_03_15_220300_create_laravel_colors_table.php')
+            __DIR__.'/2016_03_15_220300_create_color_schemes_table.php' => database_path('migrations/2016_03_15_220300_create_color_schemes_table.php')
         ], 'migrations');
     }
 
