@@ -1,0 +1,51 @@
+$menuItemHeight: 31px
+
+.menu
+    position: absolute
+    top: $menuItemHeight
+    left: $menuMargin
+    padding: 0
+    margin: 0
+    z-index: 10
+    
+    +ele(head)
+        font-size: 1.3em
+        cursor: pointer
+        list-style: none
+        color: white
+
+    +ele(item)
+        padding: 5px
+        cursor: pointer
+        font-size: 1.1em
+
+        &:last-child
+            border-radius: 0 0 2px 2px
+
+        &:hover
+            background-color: $lightBlue
+            color: white
+
+        +mod(empty)
+            &:hover
+                background-color: $white
+                color: $black
+
+    +ele(section)
+        list-style: none
+        padding: 0
+        width: 175px
+        background-color: $white
+        color: $black
+        margin-top: 9px
+        border-radius: 0 0 2px 2px
+        border-top: none
+        box-shadow: $boxShadow
+
+.slide-down-transition
+    transition: all .3s ease-out
+    margin-top: 9px
+
+.slide-down-enter, .slide-down-leave
+    margin-top: -70px
+

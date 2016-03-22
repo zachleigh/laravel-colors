@@ -1,0 +1,55 @@
+.color
+    position: relative
+    display: flex
+    align-items: flex-end
+    height: 100%
+    flex: 1 0 120px
+    z-index: 1
+
+    +ele(delete)
+        position: absolute
+        top: 5px
+        right: 5px
+        color: white
+        transition: all .3s ease
+        z-index: 15
+        cursor: pointer
+
+        &:hover
+            color: $red
+
+    +ele(edit)
+        text-align: center
+
+    +ele(handle)
+        position: absolute
+        height: 100%
+        width: 100%
+        bottom: 200px
+        cursor: move
+        cursor: grab
+        cursor: -moz-grab
+        cursor: -webkit-grab
+
+    +ele(name)
+        margin: 15px 0 0
+        font-size: 1.2em
+
+    +ele(overlay)
+        position: relative
+        display: flex
+        flex-direction: column
+        width: 100%
+        height: 200px
+        background-color: $transBlack
+        z-index: 5
+
+    +ele(text)
+        display: flex
+        justify-content: center
+        color: white
+        z-index: 10
+
+    +ele(value)
+        margin: 5px 0 0
+        font-size: .9em

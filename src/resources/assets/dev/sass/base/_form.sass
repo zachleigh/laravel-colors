@@ -1,0 +1,23 @@
+.form 
+    align-self: center
+    text-align: center
+    height: 15px
+    border: none
+    border-radius: 2px
+    padding: 2px
+    font-size: .9em
+
+    +mod(color)
+        padding: 0
+        border: none
+        height: 1.5em
+
+    +mod(rgb)
+        display: flex
+        justify-content: space-around
+        flex-wrap: wrap
+        max-width: 200px
+        margin: auto
+
+    +ele(label)
+        color: white

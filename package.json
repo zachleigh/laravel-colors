@@ -1,0 +1,35 @@
+{
+  "name": "laravel-colors",
+  "version": "0.1.1",
+  "description": "Color scheme vizualization for Laravel.",
+  "main": "/src/resources/assets/js/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "dragula": "^3.6.8",
+    "vue": "^1.0.17",
+    "vue-resource": "^0.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachleigh/laravel-colors.git"
+  },
+  "keywords": [
+    "laravel",
+    "color",
+    "colors",
+    "scheme",
+    "palette"
+  ],
+  "author": "Zach Leigh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zachleigh/laravel-colors/issues"
+  },
+  "homepage": "https://github.com/zachleigh/laravel-colors#readme"
+}

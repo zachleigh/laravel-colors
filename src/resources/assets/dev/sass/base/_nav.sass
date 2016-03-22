@@ -1,0 +1,37 @@
+.nav 
+    position: fixed
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: $black
+    border-bottom: 1px solid $darkBlack
+    height: 40px
+    width: 100%
+    z-index: 20
+    box-shadow: $boxShadow
+
+    +ele(item)
+        color: white
+
+    +ele(list)
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+
+    +ele(logo)
+        font-size: 1.4em
+        font-family: Raleway
+
+    +ele(section)
+        position: relative
+        display: flex
+        flex: 1
+        justify-content: center
+        margin: 0 $menuMargin
+
+        &:first-child 
+            justify-content: flex-start
+
+        &:last-child 
+            justify-content: flex-end
