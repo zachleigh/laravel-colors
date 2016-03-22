@@ -146,7 +146,7 @@
             },
 
             removeColor: function (color) {
-                this.$dispatch('test', color);
+                this.$dispatch('removeColor', color);
             }
         }
     };

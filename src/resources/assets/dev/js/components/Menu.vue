@@ -25,9 +25,7 @@
 
         methods: {
             showMenuItem: function(name) {
-                var prop = 'show' + name;
-
-                this.$parent[prop] = true;
+                this.$dispatch('openModule', name);
 
                 this.open = false;
             }

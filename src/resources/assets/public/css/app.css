@@ -65,6 +65,10 @@ html, body, #app {
     padding: 0;
     border: none;
     height: 1.5em; }
+  .form--modal {
+    border: 1px solid #52a9bd;
+    text-align: left;
+    height: 18px; }
   .form--rgb {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -277,6 +281,8 @@ html, body, #app {
     text-align: center;
     margin: 20px 0;
     color: #323232; }
+  .modal__body-header {
+    margin-bottom: 5px; }
   .modal__container {
     width: 300px;
     margin: 0px auto;
@@ -298,6 +304,20 @@ html, body, #app {
     text-align: center;
     margin-top: 0;
     color: #52a9bd; }
+  .modal__saved {
+    padding: 0 10px;
+    height: 1.5em;
+    line-height: 1.5em; }
+    .modal__saved:hover {
+      background-color: #52a9bd;
+      color: white; }
+  .modal__saves {
+    max-height: 150px;
+    overflow: auto;
+    padding: 8px 0;
+    text-align: left;
+    border: 1px solid #323232;
+    border-radius: 2px; }
   .modal__wrapper {
     display: table-cell;
     vertical-align: middle; }
@@ -309,15 +329,5 @@ html, body, #app {
 .modal-leave .modal__container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1); }
-
-.scheme-list__item {
-  display: block;
-  text-align: left;
-  cursor: default;
-  padding: 5px; }
-
-.scheme-list__item:hover {
-  background-color: #52a9bd;
-  color: white; }
 
 /*# sourceMappingURL=app.css.map */

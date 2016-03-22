@@ -1,11 +1,14 @@
 <modal :show.sync="showLoad">
     <h3 slot="header">Load Scheme</h3>
     <div slot="body">
-        <div class="scheme-list">
-            <span class="scheme-list__item" v-for="save in saves" v-on:click="loadScheme(save.name)">@{{ save.name }}</span>
+        <h5 class="modal__body-header">Saved Schemes</h5>
+        <div class="modal__saves">
+            <div class="modal__saved" v-on:click="loadScheme(name)" v-for="name in names">
+                @{{ name }}
+            </div>
         </div>
     </div>
     <div slot="footer">
-        
+        <button class="button button--dark button--modal" v-on:click="showLoad = false">Ok</button>
     </div>
 </modal>

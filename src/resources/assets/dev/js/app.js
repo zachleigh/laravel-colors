@@ -10,7 +10,7 @@ var Modal = require('./components/Modal.vue');
 
 var Color = require('./components/Color.vue');
 
-var vm = new Vue({
+new Vue({
     el: '#app',
 
     components: { Menu, Modal, Color },
@@ -30,6 +30,7 @@ var vm = new Vue({
         showSave: false,
         showLoad: false,
         schemeName: '',
+        temp: [],
         colorScheme: []
     },
 
@@ -72,8 +73,20 @@ var vm = new Vue({
     },
 
     events: {
-        test: function (color) {
+        removeColor: function (color) {
             this.colorScheme.$remove(color);
+        },
+
+        openModule: function (name) {
+            this.temp = this.colorScheme;
+
+            var prop = 'show' + name;
+
+            this[prop] = true;
+        },
+
+        restoreScheme: function () {
+            this.colorScheme = this.temp;
         }
     },
 
@@ -109,6 +122,10 @@ var vm = new Vue({
             this.schemeName = name;
 
             this.colorScheme = JSON.parse(scheme[0].colors);
+        },
+
+        setSchemeName: function (name) {
+            this.schemeName = name;
         }
     }
 });

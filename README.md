@@ -56,4 +56,4 @@ php artisan migrate
 Finished. Now simply visit the route defined in the config file in your browser and see your project's color scheme in all its beautiful glory.
    
 ### Development
-Pull requests are welcome. The gulp file uses Laravel Elixir and a few other packages, but they are not included in the git repo. Before building resources, run npm install.
+Pull requests are welcome.
