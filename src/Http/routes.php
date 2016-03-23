@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/laravel-colors/colors', 'LaravelColorsController@index');
+Route::get(config('laravel-colors.route'), 'LaravelColorsController@index');
 
 Route::post('/laravel-colors/save', 'LaravelColorsController@create');
 

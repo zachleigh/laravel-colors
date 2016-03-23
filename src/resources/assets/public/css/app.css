@@ -12,6 +12,114 @@ html, body, #app {
 .invisible {
   visibility: hidden; }
 
+.slide-fade-short-enter {
+  -webkit-animation: slide-open .2s;
+  animation: slide-open .2s; }
+
+.slide-fade-short-leave {
+  -webkit-animation: slide-close .2s;
+  animation: slide-close .2s; }
+
+.fade-enter {
+  -webkit-animation: fade-in .7s;
+  animation: fade-in .7s; }
+
+.fade-leave {
+  -webkit-animation: fade-out .3s;
+  animation: fade-out .3s; }
+
+.slide-fade-enter {
+  -webkit-animation: slide-open .7s;
+  animation: slide-open .7s; }
+
+.slide-fade-leave {
+  -webkit-animation: slide-close .7s;
+  animation: slide-close .7s; }
+
+@-webkit-keyframes slide-open {
+  0% {
+    max-height: 0;
+    opacity: 0; }
+  10% {
+    max-height: 0;
+    opacity: 0; }
+  60% {
+    max-height: 260px;
+    opacity: 0; }
+  100% {
+    max-height: 260px;
+    opacity: 1; } }
+
+@keyframes slide-open {
+  0% {
+    max-height: 0;
+    opacity: 0; }
+  10% {
+    max-height: 0;
+    opacity: 0; }
+  60% {
+    max-height: 260px;
+    opacity: 0; }
+  100% {
+    max-height: 260px;
+    opacity: 1; } }
+
+@-webkit-keyframes slide-close {
+  0% {
+    max-height: 260px;
+    opacity: 1; }
+  40% {
+    max-height: 260px;
+    opacity: 0; }
+  100% {
+    max-height: 0;
+    opacity: 0; } }
+
+@keyframes slide-close {
+  0% {
+    max-height: 260px;
+    opacity: 1; }
+  40% {
+    max-height: 260px;
+    opacity: 0; }
+  100% {
+    max-height: 0;
+    opacity: 0; } }
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+    max-height: 0; }
+  50% {
+    opacity: 0;
+    max-height: 0; }
+  100% {
+    opacity: 1;
+    max-height: 2em; } }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    max-height: 0; }
+  50% {
+    opacity: 0;
+    max-height: 0; }
+  100% {
+    opacity: 1;
+    max-height: 2em; } }
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .button {
   text-align: center;
   padding: 3px;
@@ -282,7 +390,8 @@ html, body, #app {
     margin: 20px 0;
     color: #323232; }
   .modal__body-header {
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    font-size: 1em; }
   .modal__container {
     width: 300px;
     margin: 0px auto;
@@ -304,6 +413,24 @@ html, body, #app {
     text-align: center;
     margin-top: 0;
     color: #52a9bd; }
+  .modal__mini-scheme {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 10px 0; }
+  .modal__mini-scheme-column {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 20px;
+    margin-bottom: 10px; }
+    .modal__mini-scheme-column:first-child {
+      border-radius: 2px 0 0 2px; }
+    .modal__mini-scheme-column:last-child {
+      border-radius: 0 2px 2px 0; }
   .modal__saved {
     padding: 0 10px;
     height: 1.5em;
@@ -319,6 +446,8 @@ html, body, #app {
     border: 1px solid #323232;
     border-radius: 2px;
     cursor: pointer; }
+  .modal__sub-modal-button {
+    margin-top: 5px; }
   .modal__wrapper {
     display: table-cell;
     vertical-align: middle; }
@@ -331,54 +460,25 @@ html, body, #app {
   -webkit-transform: scale(1.1);
   transform: scale(1.1); }
 
-.slide-fade-enter {
-  -webkit-animation: slide-open .5s;
-  animation: slide-open .5s; }
+.manage__actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  width: 100%;
+  height: 1.5em; }
 
-.slide-fade-leave {
-  -webkit-animation: slide-close .5s;
-  animation: slide-close .5s; }
+.manage__action {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1; }
 
-@-webkit-keyframes slide-open {
-  0% {
-    height: 0;
-    opacity: 0; }
-  50% {
-    height: 250px;
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.manage__action-container {
+  height: 50px; }
 
-@keyframes slide-open {
-  0% {
-    height: 0;
-    opacity: 0; }
-  50% {
-    height: 250px;
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-webkit-keyframes slide-close {
-  0% {
-    height: 250px;
-    opacity: 1; }
-  50% {
-    height: 250px;
-    opacity: 0; }
-  100% {
-    height: 0;
-    opacity: 0; } }
-
-@keyframes slide-close {
-  0% {
-    height: 250px;
-    opacity: 1; }
-  50% {
-    height: 250px;
-    opacity: 0; }
-  100% {
-    height: 0;
-    opacity: 0; } }
+.manage__form {
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=app.css.map */

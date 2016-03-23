@@ -31,11 +31,18 @@
                 twoWay: true    
             }
         },
-        methods: {
-            closeModal: function () {
-                // this.$dispatch('closeModal', name);
-                console.log(7);
-            }
+
+        events: {
+            close: function () {
+                this.show = false;
+
+                var that = this;
+
+                setTimeout(function () {
+                    that.subModal = false;
+                    that.subModalToggle = true;
+                }, 500);
+            },
         }
     };
 </script>

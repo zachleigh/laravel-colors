@@ -35,13 +35,21 @@
     export default {
         props: ['color', 'name', 'hex'],
 
-        data: function() {
-          return {
-            open: false
-          }
+        data: function () {
+            return {
+                open: false
+            }
         },
 
         computed: {
+            button: function () {
+                if (this.open) {
+                    return 'Done';
+                } else {
+                    return 'Edit';
+                }
+            },
+
             rgb: function () {
                 return 'rgb(' + this.r + ', ' + this.g + ', ' + this.b + ')';
             },
@@ -71,14 +79,6 @@
                 set: function (b) {
                     this.updateHex(this.r, this.g, parseInt(b));
                 }
-            },
-
-            button: function() {
-              if (this.open) {
-                return 'Done';
-              } else {
-                return 'Edit';
-              }
             }
         },
 
@@ -116,11 +116,15 @@
 
                 return resultArray[value];
             },
+            
+            removeColor: function (color) {
+                this.$dispatch('removeColor', color);
+            },
 
-            valueToHex: function (value) {
-                var hex = value.toString(16);
-
-                return hex.length == 1 ? "0" + hex : hex;
+            updateHex: function (r, g, b) {
+                if (r <= 255 && g <= 255 && b <= 255) {
+                    this.hex = '#' + this.valueToHex(r) + this.valueToHex(g) + this.valueToHex(b);
+                }
             },
 
             updateRGB: function (operator, value) {
@@ -139,14 +143,10 @@
                 }
             },
 
-            updateHex: function (r, g, b) {
-                if (r <= 255 && g <= 255 && b <= 255) {
-                    this.hex = '#' + this.valueToHex(r) + this.valueToHex(g) + this.valueToHex(b);
-                }
-            },
+            valueToHex: function (value) {
+                var hex = value.toString(16);
 
-            removeColor: function (color) {
-                this.$dispatch('removeColor', color);
+                return hex.length == 1 ? "0" + hex : hex;
             }
         }
     };

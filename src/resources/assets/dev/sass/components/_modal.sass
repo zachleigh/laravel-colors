@@ -16,6 +16,7 @@
 
     +ele(body-header)
         margin-bottom: 5px
+        font-size: 1em
 
     +ele(container)
         width: 300px
@@ -37,6 +38,22 @@
         margin-top: 0
         color: $lightBlue
 
+    +ele(mini-scheme)
+        display: flex
+        flex-direction: row
+        margin: 10px 0
+
+    +ele(mini-scheme-column)
+        flex: 1
+        height: 20px
+        margin-bottom: 10px
+
+        &:first-child
+            border-radius: 2px 0 0 2px
+
+        &:last-child
+            border-radius: 0 2px 2px 0
+
     +ele(saved)
         padding: 0 10px
         height: 1.5em
@@ -54,6 +71,9 @@
         border: 1px solid $black
         border-radius: 2px
         cursor: pointer
+
+    +ele(sub-modal-button)
+        margin-top: 5px
 
     +ele(wrapper)
         display: table-cell

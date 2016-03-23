@@ -5,36 +5,45 @@
             <li class="menu__item" @click="showMenuItem('New')">New Scheme</li>
             <li class="menu__item" @click="showMenuItem('Save')">Save Scheme</li>
             <li class="menu__item" @click="showMenuItem('Load')">Load Scheme</li>
-        </ul>
+            <li class="menu__item" @click="showMenuItem('Manage')">Manage Schemes</li>
         </ul>
     </ul>
+    <new :names="names"></new>
+    <save :names="names"></save>
+    <load :names="names"></load>
+    <manage :names="names"></manage>
 </template>
 
 <script>
+    import New from './New.vue';
+    import Save from './Save.vue';
+    import Load from './Load.vue';
+    import Manage from './Manage.vue';
+
     export default {
-        data: function() {
+        components: { New, Save, Load, Manage },
+
+        props: ['names'],
+
+        data: function () {
             return {
                 open: false
             }
         },
 
         events: {
-            toggleMenu: function() {
+            toggleMenu: function () {
                 this.open = !this.open;
             }
         },
 
         methods: {
-            showMenuItem: function(name) {
-                var method = 'open' + name + 'Module';
+            showMenuItem: function (name) {
+                var method = 'open' + name + 'Modal';
 
-                this.$dispatch(method);
+                this.$broadcast(method);
 
                 this.open = false;
-            },
-
-            createNewScheme: function() {
-                console.log(7);
             }
         }
     };

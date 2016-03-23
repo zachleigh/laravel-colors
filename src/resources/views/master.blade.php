@@ -10,11 +10,8 @@
     </head>
     <body>
         <div id="app" :colors="{{ json_encode($colors) }}" :saves="{{ json_encode($saves)}}">
-            @include('laravel-colors::show_new')
-            @include('laravel-colors::show_save')
-            @include('laravel-colors::show_load')
             @include('laravel-colors::nav')
-            <menu></menu>
+            <menu :names="names"></menu>
             <div id="draggable" class="wrapper">
                 <div class="color" v-for="color in colorScheme">
                     <color :color="color" :name="color.name" :hex="color.hex">

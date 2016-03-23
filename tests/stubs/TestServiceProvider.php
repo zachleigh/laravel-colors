@@ -19,6 +19,10 @@ class TestServiceProvider extends ServiceProvider
             require __DIR__.'/testRoute.php';
         }
 
+        $this->app->router->group(['namespace' => 'LaravelColors\Http\Controllers'], function () {
+            require __DIR__.'/testRoute.php';
+        });
+
         $this->loadViewsFrom(__DIR__.'/../../src/resources/views', 'laravel-colors');
 
         $this->mergeConfigFrom(__DIR__.'/config.php', 'laravel-colors');

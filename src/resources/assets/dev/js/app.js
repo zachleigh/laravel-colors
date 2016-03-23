@@ -10,6 +10,8 @@ var Modal = require('./components/Modal.vue');
 
 var Color = require('./components/Color.vue');
 
+Vue.config.debug = true;
+
 var vm = new Vue({
     el: '#app',
 
@@ -27,16 +29,8 @@ var vm = new Vue({
       },
 
     data: {
-        showNew: false,
-        showSave: false,
-        showLoad: false,
-        schemeName: '',
-        temp: [],
         colorScheme: [],
-        newScheme: [{name: 'White', hex: '#ffffff'}],
-        saved: false,
-        subModule: false,
-        subModuleToggle: true
+        temp: []
     },
 
     computed: {
@@ -49,7 +43,7 @@ var vm = new Vue({
         }
     },
 
-    created: function() {
+    created: function () {
         this.colorScheme = this.colors.concat([]);
     },
 
@@ -64,13 +58,13 @@ var vm = new Vue({
             }
         });
 
-        drake.on('drag', function(element, source) {
+        drake.on('drag', function (element, source) {
             var index = [].indexOf.call(element.parentNode.children, element);
 
             from = index;
         });
 
-        drake.on('drop', function(element, target, source, sibling) {
+        drake.on('drop', function (element, target, source, sibling) {
             var index = [].indexOf.call(element.parentNode.children, element);
 
             self.colorScheme.splice(index, 0, self.colorScheme.splice(from, 1)[0]);
@@ -78,80 +72,95 @@ var vm = new Vue({
     },
 
     events: {
+        clearCurrentScheme: function () {
+            this.colorScheme = [];
+        },
+
+        delete: function (name) {
+            this.sendDelete(name);
+        },
+
         removeColor: function (color) {
             this.colorScheme.$remove(color);
         },
 
-        openNewModule: function () {
-            this.showNew = true;
+        rename: function (name, newName) {
+            this.sendRename(name, newName);
         },
 
-        openSaveModule: function () {
-            this.showSave = true;
+        save: function (schemeName) {
+            this.sendSave(schemeName);
         },
 
-        openLoadModule: function () {
+        saveSchemeToTemp: function () {
             this.temp = this.colorScheme;
+        },
 
-            this.showLoad = true;
+        setScheme: function (name) {
+            this.loadScheme(name);
         }
     },
 
     methods: {
-        toggleMenu: function () {
-            this.$broadcast('toggleMenu');
-        },
-
         addColor: function (event) {
-            this.colorScheme.unshift({index: 0, name: 'white', hex: '#ffffff'});
+            this.colorScheme.unshift({name: 'white', hex: '#ffffff'});
         },
 
-        sendSave: function () {
-            this.$broadcast('syncColors');
-
-            this.$http.post('/laravel-colors/save', {name: this.schemeName, data: JSON.stringify(this.colorScheme)}).then(function (response) {
-                this.saves = response.data;
-            }, function (response) {
-                // error
-                console.log('crap...');
-            });
-
-            this.saved = true;
-
-            this.showSave = false;
-        },
-
-        loadScheme: function (name) {
+        getSchemeByName: function (name) {
             var scheme = this.saves.filter(function(obj) {
                 return obj.name == name;
             });
 
             this.schemeName = name;
 
-            this.colorScheme = JSON.parse(scheme[0].colors);
+            return JSON.parse(scheme[0].colors);
         },
 
-        setSchemeName: function (name) {
-            this.schemeName = name;
+        loadScheme: function (name) {
+            if (name === 'temp') {
+                this.colorScheme = this.temp;
+
+                this.temp = [];
+            } else {
+                this.colorScheme = this.getSchemeByName(name);
+            }
         },
 
-        createNewScheme: function () {
-            this.colorScheme = [];
+        sendDelete: function (name) {
+            this.$http.post('/laravel-colors/delete', {name: name}).then(function(response) {
+                this.saves = response.data;
+            }, function(response) {
+                // error
+                console.log('crap...');
+            });
         },
 
-        closeModal: function (name) {
-            var prop = 'show' + name;
-
-            this[prop] = false;
-
-            setTimeout(function () {
-                vm.subModule = false;
-                vm.subModuleToggle = true;
-            }, 500);
+        sendRename: function (name, newName) {
+            this.$http.post('/laravel-colors/update', {name: name, newName: newName}).then(function(response) {
+                this.saves = response.data;
+            }, function(response) {
+                // error
+                console.log('crap...');
+            });
         },
 
-        restoreScheme: function () {
-            this.colorScheme = this.temp;
+        sendSave: function (schemeName) {
+            this.$broadcast('syncColors');
+
+            this.$http.post('/laravel-colors/save', {name: schemeName, data: JSON.stringify(this.colorScheme)}).then(function(response) {
+                this.saves = response.data;
+            }, function (response) {
+                // error
+                console.log('crap...');
+            });
+        },
+
+        setSchemeToTemp: function (name) {
+            this.temp = this.getSchemeByName(name);
+        },
+
+        toggleMenu: function () {
+            this.$broadcast('toggleMenu');
         }
     }
 });

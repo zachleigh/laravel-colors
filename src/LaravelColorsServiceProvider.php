@@ -10,14 +10,17 @@ class LaravelColorsServiceProvider extends ServiceProvider
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
-     * @return void
+     * @param \Illuminate\Contracts\Events\Dispatcher $events
      */
     public function boot(DispatcherContract $events)
     {
-        if (! $this->app->routesAreCached()) {
-            require __DIR__.'/routes.php';
+        if (!$this->app->routesAreCached()) {
+            require __DIR__.'/Http/routes.php';
         }
+
+        $this->app->router->group(['namespace' => 'LaravelColors\Http\Controllers'], function () {
+            require __DIR__.'/Http/routes.php';
+        });
 
         $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-colors');
 
@@ -30,18 +33,14 @@ class LaravelColorsServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
-            __DIR__.'/2016_03_15_220300_create_color_schemes_table.php' => database_path('migrations/2016_03_15_220300_create_color_schemes_table.php')
+            __DIR__.'/2016_03_15_220300_create_color_schemes_table.php' => database_path('migrations/2016_03_15_220300_create_color_schemes_table.php'),
         ], 'migrations');
     }
 
     /**
      * Register bindings in the container.
-     *
-     * @return void
      */
     public function register()
     {
-
     }
-
 }

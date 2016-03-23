@@ -33,4 +33,32 @@ class DatabaseTest extends TestCase
 
         $this->assertEquals('updated', $saves[0]['colors']);
     }
+
+    /**
+     * @test
+     */
+    public function it_renames_color_scheme()
+    {
+        $this->post('laravel-colors/save', ['data' => 'color scheme', 'name' => 'Colors']);
+
+        $result = $this->post('laravel-colors/update', ['name' => 'Colors', 'newName' => 'New Name']);
+
+        $saves = $result->response->getOriginalContent();
+
+        $this->assertEquals('New Name', $saves[0]['name']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_deletes_color_scheme()
+    {
+        $this->post('laravel-colors/save', ['data' => 'color scheme', 'name' => 'Colors']);
+
+        $result = $this->post('laravel-colors/delete', ['name' => 'Colors']);
+
+        $saves = $result->response->getOriginalContent();
+
+        $this->assertEmpty($saves);
+    }
 }
