@@ -145,6 +145,8 @@ html, body, #app {
     .button--dark:hover {
       color: white;
       background-color: #323232; }
+  .button--green {
+    color: #4caf50; }
   .button--menu {
     height: 30px;
     margin: 0;
@@ -174,7 +176,7 @@ html, body, #app {
     border: none;
     height: 1.5em; }
   .form--modal {
-    border: 1px solid #52a9bd;
+    border: 1px solid #2196f3;
     text-align: left;
     height: 18px; }
   .form--rgb {
@@ -272,6 +274,135 @@ html, body, #app {
   cursor: grabbing;
   cursor: -webkit-grabbing; }
 
+.hover__underline {
+  color: #323232;
+  transition: all .3s;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold; }
+  .hover__underline:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #323232;
+    height: 4px;
+    transition-property: left, right;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out; }
+  .hover__underline:hover:before, .hover__underline:focus:before, .hover__underline:active:before {
+    left: 0;
+    right: 0; }
+  .hover__underline:hover {
+    color: #323232; }
+  .hover__underline--blue {
+    color: #2196f3;
+    transition: all .3s;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold; }
+    .hover__underline--blue:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      background: #2196f3;
+      height: 4px;
+      transition-property: left, right;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out; }
+    .hover__underline--blue:hover:before, .hover__underline--blue:focus:before, .hover__underline--blue:active:before {
+      left: 0;
+      right: 0; }
+    .hover__underline--blue:hover {
+      color: #323232; }
+  .hover__underline--green {
+    color: #4caf50;
+    transition: all .3s;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold; }
+    .hover__underline--green:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      background: #4caf50;
+      height: 4px;
+      transition-property: left, right;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out; }
+    .hover__underline--green:hover:before, .hover__underline--green:focus:before, .hover__underline--green:active:before {
+      left: 0;
+      right: 0; }
+    .hover__underline--green:hover {
+      color: #323232; }
+  .hover__underline--red {
+    color: #f44336;
+    transition: all .3s;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold; }
+    .hover__underline--red:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      background: #f44336;
+      height: 4px;
+      transition-property: left, right;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out; }
+    .hover__underline--red:hover:before, .hover__underline--red:focus:before, .hover__underline--red:active:before {
+      left: 0;
+      right: 0; }
+    .hover__underline--red:hover {
+      color: #323232; }
+
 .color {
   position: relative;
   display: -webkit-flex;
@@ -352,7 +483,7 @@ html, body, #app {
     .menu__item:last-child {
       border-radius: 0 0 2px 2px; }
     .menu__item:hover {
-      background-color: #52a9bd;
+      background-color: #2196f3;
       color: white; }
     .menu__item--empty:hover {
       background-color: #fafafa;
@@ -373,7 +504,7 @@ html, body, #app {
   margin-top: 9px; }
 
 .slide-down-enter, .slide-down-leave {
-  margin-top: -70px; }
+  margin-top: -155px; }
 
 .modal {
   position: fixed;
@@ -385,6 +516,8 @@ html, body, #app {
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity .3s ease; }
+  .modal__action {
+    height: 1.5em; }
   .modal__body {
     text-align: center;
     margin: 20px 0;
@@ -412,7 +545,7 @@ html, body, #app {
   .modal__header {
     text-align: center;
     margin-top: 0;
-    color: #52a9bd; }
+    color: #2196f3; }
   .modal__mini-scheme {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -436,7 +569,7 @@ html, body, #app {
     height: 1.5em;
     line-height: 1.5em; }
     .modal__saved:hover {
-      background-color: #52a9bd;
+      background-color: #2196f3;
       color: white; }
   .modal__saves {
     max-height: 150px;
@@ -448,6 +581,8 @@ html, body, #app {
     cursor: pointer; }
   .modal__sub-modal-button {
     margin-top: 5px; }
+  .modal__text {
+    margin-bottom: 10px; }
   .modal__wrapper {
     display: table-cell;
     vertical-align: middle; }
@@ -469,11 +604,6 @@ html, body, #app {
   justify-content: space-around;
   width: 100%;
   height: 1.5em; }
-
-.manage__action {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1; }
 
 .manage__action-container {
   height: 50px; }

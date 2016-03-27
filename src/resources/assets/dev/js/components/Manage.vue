@@ -1,5 +1,5 @@
 <template>
-    <modal :show.sync="show">
+    <modal :show.sync="show" :sub-modal.sync="subModal" :sub-modal-toggle.sync="subModalToggle">
         <h3 slot="header">Manage Your Color Schemes</h3>
         <div slot="body">
             <div v-if="names.length > 0">
@@ -17,22 +17,22 @@
                 </div>
                 <div class="manage__action-container">
                     <div class="manage__actions" v-show="actionOpen" transition="fade">
-                        <span class="manage__action" v-on:click="renameAction = true">Rename</span>
-                        <span class="manage__action" v-on:click="deleteAction = true">Delete</span>
+                        <span class="hover__underline--blue modal__action" v-on:click="renameAction = true">Rename</span>
+                        <span class="hover__underline--red modal__action" v-on:click="deleteAction = true">Delete</span>
                     </div>
                     <div v-show="renameAction" transition="fade">
                         <span>Scheme Name: </span>
                         <input class="form form--modal manage__form" placeholder="Scheme name" v-model="schemeName">
                         <div class="manage__actions">
-                            <span v-on:click="renameScheme(), renameAction = false">Rename</span>
-                            <span v-on:click="renameAction = false">Cancel</span>
+                            <span class="hover__underline--blue" v-on:click="renameScheme(), renameAction = false">Rename</span>
+                            <span class="hover__underline--green" v-on:click="renameAction = false">Cancel</span>
                         </div>
                     </div>
                     <div v-show="deleteAction" transition="fade">
-                        <span>Do you really want to delete {{ managedScheme }}?</span>
+                        <div class="manage__form">Do you really want to delete <em>{{ managedScheme }}</em>?</div>
                         <div class="manage__actions">
-                            <span v-on:click="deleteScheme(), deleteAction = false">Delete</span>
-                            <span v-on:click="deleteAction = false">Cancel</span>
+                            <span class="hover__underline--red" v-on:click="deleteScheme(), deleteAction = false">Delete</span>
+                            <span class="hover__underline--green" v-on:click="deleteAction = false">Cancel</span>
                         </div>
                     </div>
                 </div>
@@ -91,12 +91,18 @@
         methods: {
             close: function () {
                 this.$broadcast('close');
+
+                this.renameAction = false;
+
+                this.deleteAction = false;
             },
 
             deleteScheme: function () {
                 this.$dispatch('delete', this.managedScheme);
 
                 this.managedScheme = '';
+
+                this.schemeName = '';
 
                 this.temp = [];
 

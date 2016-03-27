@@ -9,6 +9,9 @@
     display: table
     transition: opacity .3s ease
 
+    +ele(action)
+        height: 1.5em
+
     +ele(body)
         text-align: center
         margin: 20px 0
@@ -36,7 +39,7 @@
     +ele(header)
         text-align: center
         margin-top: 0
-        color: $lightBlue
+        color: $blue
 
     +ele(mini-scheme)
         display: flex
@@ -60,7 +63,7 @@
         line-height: 1.5em
 
         &:hover
-            background-color: $lightBlue
+            background-color: $blue
             color: white
 
     +ele(saves)
@@ -74,6 +77,9 @@
 
     +ele(sub-modal-button)
         margin-top: 5px
+
+    +ele(text)
+        margin-bottom: 10px
 
     +ele(wrapper)
         display: table-cell

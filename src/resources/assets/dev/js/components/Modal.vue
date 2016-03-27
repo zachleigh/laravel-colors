@@ -29,6 +29,16 @@
                 type: Boolean,
                 required: true,
                 twoWay: true    
+            },
+            subModal: {
+                type: Boolean,
+                required: false,
+                twoWay: true    
+            },
+            subModalToggle: {
+                type: Boolean,
+                required: false,
+                twoWay: true    
             }
         },
 

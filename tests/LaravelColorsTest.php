@@ -96,6 +96,25 @@ class LaravelColorsTest extends TestCase
     /**
      * @test
      */
+    public function it_gets_default_colors_if_route_is_none()
+    {
+        $this->app['config']->set('laravel-colors.sass_file', 'none');
+
+        $this->visit('/laravel-colors/colors')
+             ->seeStatusCode(200)
+             ->see('red')
+             ->see('orange')
+             ->see('yellow')
+             ->see('green')
+             ->see('blue')
+             ->see('purple');
+
+        $this->app['config']->set('laravel-colors.sass_file', '/'.implode('/', explode('/', ltrim(__DIR__, '/'))).'/colors.scss');
+    }
+
+    /**
+     * @test
+     */
     public function it_routes_correctly()
     {
         $this->visit('/laravel-colors/colors')

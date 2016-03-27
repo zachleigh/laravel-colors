@@ -12,6 +12,20 @@ class Colors
     protected $colors = [];
 
     /**
+     * Default colors.
+     *
+     * @var array
+     */
+    protected $default = [
+        ['name' => 'red', 'hex' => '#f44336'],
+        ['name' => 'orange', 'hex' => '#ff9800'],
+        ['name' => 'yellow', 'hex' => '#ffeb3b'],
+        ['name' => 'green', 'hex' => '#4caf50'],
+        ['name' => 'blue', 'hex' => '#2196f3'],
+        ['name' => 'purple', 'hex' => '#673ab7']
+    ];
+
+    /**
      * Read colors file line by line.
      *
      * @return  array
@@ -19,6 +33,10 @@ class Colors
     public function readColorsFile()
     {
         $colorsFilePath = config('laravel-colors.sass_file');
+
+        if ($colorsFilePath === 'none') {
+            return $this->default;
+        }
 
         $realPath = realpath(__DIR__.'/../../../..'.$colorsFilePath);
 
