@@ -1,0 +1,31 @@
+.alert
+    padding: 10px
+    position: fixed
+    bottom: 10px
+    color: white
+    z-index: 10000
+    width: 100%
+    box-shadow: $boxShadow
+
+    +mod(error)
+        background-color: $red
+        border: 1px solid darken($red, 20)
+
+    +mod(info)
+        background-color: $blue
+        border: 1px solid darken($blue, 20)
+
+    +mod(success)
+        background-color: $green
+        border: 1px solid darken($green, 20)
+
+    +ele(close)
+        cursor: pointer
+        margin-right: 10px
+
+.slide-transition
+    transition: all .5s ease-in-out
+    left: 60%
+
+.slide-leave, .slide-enter
+    left: 100%

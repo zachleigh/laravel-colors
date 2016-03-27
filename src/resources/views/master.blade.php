@@ -10,6 +10,7 @@
     </head>
     <body>
         <div id="app" :colors="{{ json_encode($colors) }}" :saves="{{ json_encode($saves)}}">
+            <alert></alert>
             @include('laravel-colors::nav')
             <menu :names="names"></menu>
             <div id="draggable" class="wrapper">

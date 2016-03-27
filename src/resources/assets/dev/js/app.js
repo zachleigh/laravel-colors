@@ -10,12 +10,14 @@ var Modal = require('./components/Modal.vue');
 
 var Color = require('./components/Color.vue');
 
+var Alert = require('./components/Alert.vue');
+
 Vue.config.debug = true;
 
 var vm = new Vue({
     el: '#app',
 
-    components: { Menu, Modal, Color },
+    components: { Menu, Modal, Color, Alert },
 
     props: ['colors', 'saves'],
 
@@ -80,6 +82,10 @@ var vm = new Vue({
             this.sendDelete(name);
         },
 
+        fireAlert: function (message, type, important) {
+            this.fireAlert(message, type, important);
+        },
+
         removeColor: function (color) {
             this.colorScheme.$remove(color);
         },
@@ -106,6 +112,10 @@ var vm = new Vue({
             this.colorScheme.unshift({name: 'white', hex: '#ffffff'});
         },
 
+        fireAlert: function (message, type, important) {
+            this.$broadcast('showAlert', message, type, important);
+        },
+
         getSchemeByName: function (name) {
             var scheme = this.saves.filter(function(obj) {
                 return obj.name == name;
@@ -113,7 +123,11 @@ var vm = new Vue({
 
             this.schemeName = name;
 
-            return JSON.parse(scheme[0].colors);
+            if (scheme.length > 0) {
+                return JSON.parse(scheme[0].colors);
+            }
+
+            return scheme;
         },
 
         loadScheme: function (name) {
@@ -129,18 +143,22 @@ var vm = new Vue({
         sendDelete: function (name) {
             this.$http.post('/laravel-colors/delete', {name: name}).then(function(response) {
                 this.saves = response.data;
+
+                this.fireAlert('Scheme successfully deleted.', 'info');
             }, function(response) {
                 // error
-                console.log('crap...');
+                this.fireAlert('Delete failed', 'error', true);
             });
         },
 
         sendRename: function (name, newName) {
             this.$http.post('/laravel-colors/update', {name: name, newName: newName}).then(function(response) {
                 this.saves = response.data;
+
+                this.fireAlert('Scheme successfully renamed!', 'success');
             }, function(response) {
                 // error
-                console.log('crap...');
+                this.fireAlert('Rename failed', 'error', true);
             });
         },
 
@@ -149,9 +167,11 @@ var vm = new Vue({
 
             this.$http.post('/laravel-colors/save', {name: schemeName, data: JSON.stringify(this.colorScheme)}).then(function(response) {
                 this.saves = response.data;
+
+                this.fireAlert('Scheme saved!', 'success');
             }, function (response) {
                 // error
-                console.log('crap...');
+                this.fireAlert('Save failed', 'error', true);
             });
         },
 

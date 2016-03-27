@@ -611,4 +611,32 @@ html, body, #app {
 .manage__form {
   margin-bottom: 10px; }
 
+.alert {
+  padding: 10px;
+  position: fixed;
+  bottom: 10px;
+  color: white;
+  z-index: 10000;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33); }
+  .alert--error {
+    background-color: #f44336;
+    border: 1px solid #ba160a; }
+  .alert--info {
+    background-color: #2196f3;
+    border: 1px solid #0960a5; }
+  .alert--success {
+    background-color: #4caf50;
+    border: 1px solid #2d682f; }
+  .alert__close {
+    cursor: pointer;
+    margin-right: 10px; }
+
+.slide-transition {
+  transition: all .5s ease-in-out;
+  left: 60%; }
+
+.slide-leave, .slide-enter {
+  left: 100%; }
+
 /*# sourceMappingURL=app.css.map */
