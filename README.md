@@ -54,6 +54,13 @@ The publish command will also put a migration in App/database/migrations/. This 
 ```
 php artisan migrate
 ```
+  
+If your project uses the VerifyCsrfToken middleware globally, exclude laravel-colors in the VerifyCsrfToken middleware file.
+```
+protected $except = [
+    'laravel-colors/*'
+];
+```
 
 Finished. Now simply visit the route defined in the config file in your browser and see your project's color scheme in all its beautiful glory.
    
