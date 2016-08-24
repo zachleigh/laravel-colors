@@ -9,10 +9,8 @@ class LaravelColorsServiceProvider extends ServiceProvider
 {
     /**
      * Register any other events for your application.
-     *
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
      */
-    public function boot(DispatcherContract $events)
+    public function boot()
     {
         if (!$this->app->routesAreCached()) {
             require __DIR__.'/Http/routes.php';
